@@ -87,9 +87,9 @@ o.exrc = true
 
 -- Help text fullscreen
 autocmd('FileType', {
-        pattern = {"help"},
-        command = "wincmd o",
-    }
+	pattern = { "help" },
+	command = "wincmd o",
+}
 )
 
 -- Restore cursor position
@@ -117,11 +117,7 @@ if not vim.loop.fs_stat(mini_path) then
 		'git', 'clone', '--filter=blob:none',
 		'https://github.com/echasnovski/mini.nvim', mini_path
 	}
-	local checkout_cmd = {
-		'git', '-C', mini_path, 'checkout', '19e1584124cda35388d4fdb911eab7124014e541'
-	}
 	vim.fn.system(clone_cmd)
-	vim.fn.system(checkout_cmd)
 	vim.cmd('packadd mini.nvim | helptags ALL')
 	vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
