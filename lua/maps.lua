@@ -25,7 +25,25 @@ vim.keymap.set('n', '<bs>', "<C-o>", {
 	silent = true,
 })
 
-vim.keymap.set('n', "-", require("oil").open, {
+vim.keymap.set('n', "=", function()
+	require("neoscroll").ctrl_u({
+		duration = 250,
+	})
+end, {
+	desc = "Scroll down",
+	noremap = true,
+})
+
+vim.keymap.set('n', "-", function()
+	require("neoscroll").ctrl_d({
+		duration = 250,
+	})
+end, {
+	desc = "Scroll down",
+	noremap = true,
+})
+
+vim.keymap.set('n', "_", require("oil").open, {
 	desc = "Edit parent directory",
 	noremap = true,
 })
