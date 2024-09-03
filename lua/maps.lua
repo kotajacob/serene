@@ -239,8 +239,8 @@ map("n", "<space>wj", "<c-w>j", {
 })
 
 -- Buffers --
-map("n", "<space>bf", "", {
-	desc = "Find buffers",
+map("n", "<space>b", "", {
+	desc = "Buffers",
 	noremap = true,
 	callback = function()
 		require("telescope.builtin").buffers({
@@ -248,22 +248,6 @@ map("n", "<space>bf", "", {
 			ignore_current_buffer = true,
 			sort_mru = true,
 		})
-	end,
-})
-
-map("n", "<space>bn", "", {
-	desc = "Next buffer",
-	noremap = true,
-	callback = function()
-		MiniBracketed.buffer("forward")
-	end,
-})
-
-map("n", "<space>bp", "", {
-	desc = "Previous buffer",
-	noremap = true,
-	callback = function()
-		MiniBracketed.buffer("backward")
 	end,
 })
 
@@ -312,7 +296,7 @@ map("n", "<space>gr", "", {
 	end,
 })
 
-map( "v", "<leader>hs", "", {
+map("v", "<leader>hs", "", {
 	desc = "Stage hunk",
 	noremap = true,
 	silent = true,
@@ -321,7 +305,7 @@ map( "v", "<leader>hs", "", {
 	end,
 })
 
-map( "v", "<leader>hr", "", {
+map("v", "<leader>hr", "", {
 	desc = "Reset hunk",
 	noremap = true,
 	silent = true,
