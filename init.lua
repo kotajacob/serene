@@ -4,13 +4,14 @@ require('plenary')
 require('syntax')
 require('search')
 
-require('align')   -- TODO: space hotkeys
+require('align') -- TODO: space hotkeys
+require('animate')
 require('bracketed')
 require('comment') -- TODO: space hotkeys
 require('cursorword')
 require('diff')
 require('directory')
-require('git')
+require('git') -- TODO: diffview
 require('indentscope')
 require('jump')
 require('move')
@@ -30,8 +31,7 @@ require('unhighlight')
 require('snippets')
 require('lsp')
 require('autotag')
--- TODO: https://github.com/soulis-1256/eagle.nvim
--- OR https://github.com/LukasPietzschmann/boo.nvim
+-- TODO: https://github.com/soulis-1256/eagle.nvim OR https://github.com/LukasPietzschmann/boo.nvim
 
 require('colors')
 
