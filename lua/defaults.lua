@@ -39,7 +39,7 @@ o.ignorecase = true
 o.smartcase = true
 
 -- Display hidden characters
--- o.list = true
+o.list = true
 
 -- Time out on keycodes, but not mappings
 o.timeout = false
