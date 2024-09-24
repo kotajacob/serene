@@ -14,18 +14,11 @@ add('hrsh7th/cmp-buffer')
 add('hrsh7th/cmp-path')
 add('hrsh7th/cmp-cmdline')
 add('hrsh7th/nvim-cmp')
-add('saadparwaiz1/cmp_luasnip')
 
 -- Setup autocomplete
 local cmp = require('cmp')
-local ls = require("luasnip")
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
-	snippet = {
-		expand = function(args)
-			ls.lsp_expand(args.body)
-		end,
-	},
 	mapping = cmp.mapping.preset.insert({
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -37,14 +30,10 @@ cmp.setup({
 		end),
 		['<CR>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				if ls.expandable() then
-					ls.expand()
+				if cmp.get_active_entry() then
+					cmp.confirm()
 				else
-					if cmp.get_active_entry() then
-						cmp.confirm()
-					else
-						fallback()
-					end
+					fallback()
 				end
 			else
 				fallback()
@@ -54,8 +43,6 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item({ behavior = cmp.SelectBehavior })
-			elseif ls.locally_jumpable(1) then
-				ls.jump(1)
 			else
 				fallback()
 			end
@@ -64,8 +51,6 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item({ behavior = cmp.SelectBehavior })
-			elseif ls.locally_jumpable(-1) then
-				ls.jump(-1)
 			else
 				fallback()
 			end
@@ -73,7 +58,6 @@ cmp.setup({
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' }, -- For luasnip users.
 	}, {
 		{ name = 'buffer' },
 	}),

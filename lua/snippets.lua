@@ -9,6 +9,29 @@ ls.config.set_config {
 	-- updateevents = "TextChanged,TextChangedI",
 	enable_autosnippets = true,
 }
+--
+-- Open / Next
+vim.keymap.set(
+	{ "i", "s" },
+	"<C-J>",
+	function() ls.expand_or_jump() end,
+	{ silent = true }
+)
+
+-- Prev
+vim.keymap.set(
+	{ "i", "s" },
+	"<C-K>",
+	function() ls.jump(-1) end,
+	{ silent = true }
+)
+
+-- List options
+vim.keymap.set({ "i", "s" }, "<C-L>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, { silent = true })
 
 -- Create s(trigger, nodes)
 local s = ls.s
