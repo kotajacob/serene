@@ -88,33 +88,45 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local on_attach = function(client, bufnr)
 	format.on_attach(client, bufnr)
 end
--- nvim_lsp.gopls.setup {
+nvim_lsp.gopls.setup {
+	capabilities = capabilities
+}
+nvim_lsp.rust_analyzer.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+nvim_lsp.pyright.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+-- nvim_lsp.clangd.setup {
+-- 	on_attach = on_attach,
 -- 	capabilities = capabilities
 -- }
--- nvim_lsp.lua_ls.setup({
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- 	settings = {
--- 		Lua = {
--- 			runtime = {
--- 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
--- 				version = 'LuaJIT',
--- 			},
--- 			diagnostics = {
--- 				-- Get the language server to recognize the `vim` global
--- 				globals = {
--- 					'vim',
--- 					'MiniDeps',
--- 					'MiniDiff',
--- 					'MiniFiles',
--- 					'MiniTrailspace',
--- 					'MiniBracketed',
--- 				},
--- 			},
--- 			-- Do not send telemetry data containing a randomized but unique identifier
--- 			telemetry = {
--- 				enable = false,
--- 			},
--- 		},
--- 	},
--- })
+nvim_lsp.lua_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT',
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = {
+					'vim',
+					'MiniDeps',
+					'MiniDiff',
+					'MiniFiles',
+					'MiniTrailspace',
+					'MiniBracketed',
+				},
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+})

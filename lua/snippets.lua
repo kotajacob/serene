@@ -62,10 +62,7 @@ ls.add_snippets("go", {
 	),
 	s(
 		"wr",
-		fmt(
-			[[{} http.ResponseWriter, {} *http.Request]],
-			{ i(1, "w"), i(2, "r") }
-		)
+		fmt([[w http.ResponseWriter, r *http.Request]], {})
 	),
 	s(
 		"tf",
@@ -122,4 +119,3 @@ ls.add_snippets("go", {
 		fmt([[log.Printf("%+v\n", {})]], { i(1) })
 	),
 })
-
