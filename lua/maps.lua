@@ -287,6 +287,15 @@ map("n", "<space>gf", "", {
 	noremap = true,
 })
 
+map("n", "<space>gb", "", {
+	desc = "Blame",
+	noremap = true,
+	silent = true,
+	callback = function()
+		require("gitsigns").blame()
+	end,
+})
+
 map("n", "<space>gp", "", {
 	desc = "Preview hunk",
 	noremap = true,
