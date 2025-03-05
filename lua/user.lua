@@ -8,6 +8,12 @@ require('go').setup({
 	auto_lint = false,
 })
 
+-- Y to copy to clipboard
+vim.keymap.set("n", "Y", '"+y', {
+	desc = "Copy to clipboard",
+	noremap = true,
+})
+
 -- Setting it to html isn't ideal, but it allows us to use
 -- https://github.com/windwp/nvim-ts-autotag
 --
