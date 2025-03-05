@@ -3,9 +3,24 @@ local add = MiniDeps.add
 -- Disable hidden characters
 vim.o.list = false
 
-add('crispgm/nvim-go')
+-- Go dev plugin
+add('ray-x/go.nvim')
 require('go').setup({
-	auto_lint = false,
+	icons = false,
+	gofmt = 'golines',
+	max_line_len = 100,
+	lsp_keymaps = false,
+	lsp_inlay_hints = {
+		enable = false,
+	},
+})
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.go",
+	callback = function()
+		require('go.format').goimports()
+	end,
+	group = format_sync_grp,
 })
 
 -- Y to copy to clipboard
