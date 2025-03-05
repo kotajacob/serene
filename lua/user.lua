@@ -24,8 +24,10 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	callback = function() vim.bo.filetype = "html" end,
 })
 
-add('folke/lazydev.nvim') -- lua dev plugin
+-- Lua dev plugin
+add('folke/lazydev.nvim')
 
+-- Navigate vim splits with sway bindings
 add('https://git.sr.ht/~jcc/vim-sway-nav')
 
 -- I spent many hours (2024/08/30) trying out different alternatives, this this
