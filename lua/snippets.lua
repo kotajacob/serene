@@ -46,9 +46,15 @@ ls.add_snippets("all", {
 	s(
 		"agpl", fmt([[
 		// License: AGPL-3.0-only
-		// (c) 2024 Dakota Walsh <kota@nilsu.org>
+		// (c) 2025 Dakota Walsh <kota@nilsu.org>
 		]], {})
 	),
+})
+
+ls.add_snippets("rust", {
+	s("db", fmt("#[derive(Debug)]", {})),
+	s("dc", fmt("#[derive(Component)]", {})),
+	s("fp", fmt([[println!("{}")]], { i(1) })),
 })
 
 ls.add_snippets("go", {
@@ -88,11 +94,15 @@ ls.add_snippets("go", {
 	),
 	s(
 		"ff",
-		fmt([[fmt.Printf({})]], { i(1) })
+		fmt([[fmt.Printf("%+v\n", {})]], { i(1) })
 	),
 	s(
-		"fv",
-		fmt([[fmt.Printf("%+v\n", {})]], { i(1) })
+		"fe",
+		fmt([[
+		fmt.Fprintf(os.Stderr, "{}: %v\n", err)
+		os.Exit(1)
+		]], { i(1) }
+		)
 	),
 	s(
 		"lp",
