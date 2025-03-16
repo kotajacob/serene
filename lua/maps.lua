@@ -279,6 +279,12 @@ map("n", "<space>gg", "", {
 	end,
 })
 
+map("n", "<space>gd", ":DiffviewOpen origin/HEAD...HEAD --imply-local=true<cr>", {
+	desc = "Diff as PR",
+	noremap = true,
+	silent = true,
+})
+
 map("n", "<space>gf", "", {
 	desc = "Find git files",
 	callback = function()

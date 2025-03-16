@@ -11,7 +11,7 @@ require('comment') -- TODO: space hotkeys
 require('cursorword')
 require('diff')
 require('directory')
-require('git') -- TODO: diffview
+require('git')
 require('indentscope')
 require('jump')
 require('move')
