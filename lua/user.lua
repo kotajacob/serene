@@ -4,23 +4,22 @@ local add = MiniDeps.add
 vim.o.list = false
 
 -- Go dev plugin
-add('ray-x/go.nvim')
+add('crispgm/nvim-go')
 require('go').setup({
-	icons = false,
-	gofmt = 'golines',
-	max_line_len = 100,
-	lsp_keymaps = false,
-	lsp_inlay_hints = {
-		enable = false,
-	},
+	auto_lint = false,
+	linter = 'golangci-lint',
+	-- formatter = 'gofumpt',
+	-- maintain_cursor_pos = true, -- This appears to be broken...
 })
-local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*.go",
-	callback = function()
-		require('go.format').goimports()
-	end,
-	group = format_sync_grp,
+
+-- Show Lint Issues without Focusing
+local NvimGo = vim.api.nvim_create_augroup("NvimGo", {
+	clear = true,
+})
+vim.api.nvim_create_autocmd({ "User" }, {
+	pattern = "NvimGoLintPopupPost",
+	group = NvimGo,
+	command = "wincmd p",
 })
 
 -- Y to copy to clipboard
@@ -139,3 +138,32 @@ require("formatter").setup {
 		}
 	},
 }
+
+-- Run above formatters after save.
+-- NOTE: These could conflict with LSP formatters if you're not careful.
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+augroup("__formatter__", { clear = true })
+autocmd("BufWritePost", {
+	group = "__formatter__",
+	command = ":FormatWrite",
+})
+
+-- Writing html tags
+add('mattn/emmet-vim')
+
+-- CSV support
+add('mechatroner/rainbow_csv')
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = "*.dat",
+	callback = function()
+		vim.bo.filetype = "csv_pipe"
+		vim.wo.wrap = false
+		vim.cmd([[
+nnoremap <expr> <C-Left> get(b:, 'rbcsv', 0) == 1 ? ':RainbowCellGoLeft<CR>' : '<C-Left>'
+nnoremap <expr> <C-Right> get(b:, 'rbcsv', 0) == 1 ? ':RainbowCellGoRight<CR>' : '<C-Right>'
+nnoremap <expr> <C-Up> get(b:, 'rbcsv', 0) == 1 ? ':RainbowCellGoUp<CR>' : '<C-Up>'
+nnoremap <expr> <C-Down> get(b:, 'rbcsv', 0) == 1 ? ':RainbowCellGoDown<CR>' : '<C-Down>'
+]])
+	end,
+})
