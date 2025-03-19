@@ -116,6 +116,15 @@ vim.keymap.set('n', '<space>qaf', ':qa!<cr>', {
 })
 
 -- Setting toggles --
+map("n", "<space>se", "", {
+	desc = "Toggle error visibility",
+	noremap = true,
+	silent = true,
+	callback = function()
+		vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+	end,
+})
+
 vim.keymap.set('n', '<space>sh', ':set list!<cr>', {
 	desc = "Toggle viewing hidden characters",
 	noremap = true,
